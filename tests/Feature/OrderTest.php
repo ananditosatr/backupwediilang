@@ -65,8 +65,24 @@ class OrderTest extends TestCase
             'customer_name' => 'Budi',
             'no_whatsapp'   => '08123456789',
             'status'        => 'pending_verification',
+            'payment_method'=> 'qris',
             'total_amount'  => 30000,
         ]);
+    }
+
+    public function test_order_requires_proof_for_qris(): void
+    {
+        $menu = $this->createMenu();
+
+        $response = $this->postJson('/orders', [
+            'customer_name' => 'Budi',
+            'no_whatsapp'   => '08123456789',
+            'payment_method'=> 'qris',
+            'items'         => [['menu_id' => $menu->id, 'quantity' => 1]],
+        ]);
+
+        $response->assertStatus(422)
+                 ->assertJsonValidationErrors(['proof_image']);
     }
 
     public function test_order_requires_name(): void
