@@ -10,7 +10,7 @@
         <div class="px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 bg-gradient-to-br from-red-600 to-red-700 rounded-lg flex items-center justify-center shadow">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary-600 to-primary-700 rounded-lg flex items-center justify-center shadow">
                         <span class="text-lg font-bold text-white">POS</span>
                     </div>
                     <div>
@@ -40,8 +40,8 @@
                 @if(isset($menu)) @method('PUT') @endif
 
                 @if($errors->any())
-                <div class="mb-5 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl">
-                    <ul class="text-sm text-red-600 dark:text-red-400 space-y-1">
+                <div class="mb-5 p-4 bg-primary-50 dark:bg-primary-900/20 border border-primary-200 dark:border-primary-800 rounded-xl">
+                    <ul class="text-sm text-primary-700 dark:text-primary-300 space-y-1">
                         @foreach($errors->all() as $error)
                         <li>- {{ $error }}</li>
                         @endforeach
@@ -51,9 +51,9 @@
 
                 <!-- Kategori -->
                 <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Kategori <span class="text-red-500">*</span></label>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Kategori <span class="text-primary-600">*</span></label>
                     <select name="category_id" required
-                        class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                        class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent">
                         <option value="">-- Pilih Kategori --</option>
                         @foreach($categories as $cat)
                         <option value="{{ $cat->id }}" {{ old('category_id', isset($menu) ? $menu->category_id : '') == $cat->id ? 'selected' : '' }}>
@@ -65,10 +65,10 @@
 
                 <!-- Nama Menu -->
                 <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Nama Menu <span class="text-red-500">*</span></label>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Nama Menu <span class="text-primary-600">*</span></label>
                     <input type="text" name="name" required
                         value="{{ old('name', isset($menu) ? $menu->name : '') }}"
-                        class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                        class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                         placeholder="Contoh: Americano">
                 </div>
 
@@ -76,26 +76,24 @@
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Deskripsi</label>
                     <textarea name="description" rows="3"
-                        class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                        class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                         placeholder="Deskripsi singkat menu...">{{ old('description', isset($menu) ? $menu->description : '') }}</textarea>
                 </div>
 
                 <!-- Harga & Stok -->
                 <div class="grid grid-cols-2 gap-4 mb-4">
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Harga (Rp) <span class="text-red-500">*</span></label>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Harga (Rp) <span class="text-primary-600">*</span></label>
                         <input type="number" name="price" required min="0"
                             value="{{ old('price', isset($menu) ? $menu->price : '') }}"
-                            class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                            class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                             placeholder="25000">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Stok <span class="text-red-500">*</span></label>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Stok <span class="text-primary-600">*</span></label>
                         <input type="number" name="stock" required min="0"
                             value="{{ old('stock', isset($menu) ? $menu->stock : 50) }}"
-                            class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-red-500 focus:border-transparent">
-                    </div>
-                </div>
+                            class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-xl text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent">
 
                 <!-- Foto Menu -->
                 <div class="mb-4">
@@ -107,7 +105,7 @@
                             class="w-20 h-20 rounded-xl object-cover border border-gray-200 dark:border-gray-600">
                         <div>
                             <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Foto saat ini</p>
-                            <label class="flex items-center gap-2 text-xs text-red-600 dark:text-red-400 cursor-pointer">
+                            <label class="flex items-center gap-2 text-xs text-primary-700 dark:text-primary-300 cursor-pointer">
                                 <input type="checkbox" name="remove_image" value="1" class="rounded">
                                 Hapus foto ini
                             </label>
@@ -116,7 +114,7 @@
                     @endif
 
                     <div id="drop-zone"
-                        class="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-6 text-center cursor-pointer hover:border-red-400 transition"
+                        class="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-6 text-center cursor-pointer hover:border-primary-400 transition"
                         onclick="document.getElementById('image-input').click()">
                         <input type="file" id="image-input" name="image" accept="image/*" class="hidden" onchange="previewImage(event)">
                         <div id="img-placeholder">
@@ -138,7 +136,7 @@
                     <label class="flex items-center gap-3 cursor-pointer">
                         <input type="checkbox" name="is_available" value="1"
                             {{ old('is_available', isset($menu) ? $menu->is_available : true) ? 'checked' : '' }}
-                            class="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500">
+                            class="w-4 h-4 text-primary-600 border-gray-300 rounded focus:ring-primary-500">
                         <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Menu tersedia untuk dipesan</span>
                     </label>
                 </div>
@@ -150,7 +148,7 @@
                         Batal
                     </a>
                     <button type="submit"
-                        class="flex-1 py-3 bg-red-600 hover:bg-red-700 text-white rounded-xl text-sm font-bold transition shadow">
+                        class="flex-1 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-xl text-sm font-bold transition shadow">
                         {{ isset($menu) ? 'Simpan Perubahan' : 'Tambah Menu' }}
                     </button>
                 </div>
