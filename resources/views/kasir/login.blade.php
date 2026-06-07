@@ -3,22 +3,18 @@
 @section('title', 'Login Kasir - POS Rumah Cake suprezz')
 
 @section('content')
-<div class="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 px-4">
-    <div class="max-w-md w-full">
-        <!-- Logo -->
-        <div class="text-center mb-8">
-            <div class="w-16 h-16 mx-auto bg-gradient-to-br from-red-600 to-red-700 rounded-xl flex items-center justify-center shadow-lg mb-4">
-                <span class="text-2xl font-bold text-white">POS</span>
-            </div>
-            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Kasir Dashboard</h2>
-            <p class="text-gray-600 dark:text-gray-400 mt-1">Masuk untuk mengelola pesanan</p>
+<div class="min-h-screen flex items-center justify-center bg-[radial-gradient(circle_at_top_left,_rgba(217,179,108,0.35),_transparent_30%),radial-gradient(circle_at_bottom_right,_rgba(36,72,40,0.22),_transparent_30%),linear-gradient(135deg,#f5edd7_0%,#d9b16d_50%,#5f6b3b_100%)] px-4 py-10 text-slate-900">
+    <div class="relative w-full max-w-md">
+        <div class="text-center mb-10">
+            <img src="{{ asset('images/PT_rumah_cake_suprezz logo.png') }}" alt="Rumah Cake Suprezz" class="mx-auto w-28 h-28 object-contain">
+            <h2 class="mt-6 text-3xl font-extrabold tracking-tight">Kasir Dashboard</h2>
+            <p class="mt-2 text-base text-slate-800/80">Masuk untuk mengelola pesanan Rumah Cake Suprezz</p>
         </div>
 
-        <!-- Login Card -->
-        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
+        <div class="space-y-5 bg-white/80 backdrop-blur-xl rounded-[2rem] p-7 shadow-[0_30px_90px_rgba(0,0,0,0.12)] border border-white/60">
             @if($errors->any())
-            <div class="mb-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
-                <p class="text-sm text-red-600 dark:text-red-400">{{ $errors->first() }}</p>
+            <div class="rounded-3xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
+                {{ $errors->first() }}
             </div>
             @endif
 
@@ -26,41 +22,36 @@
                 @csrf
 
                 <div>
-                    <label for="username" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Username</label>
+                    <label for="username" class="block text-sm font-semibold text-slate-700 mb-2">Username</label>
                     <input type="text" id="username" name="username" value="{{ old('username') }}" required autofocus
-                        class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition"
+                        class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-primary-200"
                         placeholder="Masukkan username">
                 </div>
 
                 <div>
-                    <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Password</label>
+                    <label for="password" class="block text-sm font-semibold text-slate-700 mb-2">Password</label>
                     <input type="password" id="password" name="password" required
-                        class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white transition"
+                        class="w-full rounded-3xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-primary-200"
                         placeholder="Masukkan password">
                 </div>
 
-                <div class="flex items-center">
-                    <input type="checkbox" id="remember" name="remember"
-                        class="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500">
-                    <label for="remember" class="ml-2 text-sm text-gray-600 dark:text-gray-400">Ingat saya</label>
+                <div class="flex items-center justify-between text-sm text-slate-700">
+                    <label class="inline-flex items-center gap-2">
+                        <input type="checkbox" id="remember" name="remember"
+                            class="h-4 w-4 rounded border-slate-400 text-primary-600 focus:ring-primary-500">
+                        Ingat saya
+                    </label>
+                    <a href="{{ route('kasir.password.request') }}" class="text-primary-700 hover:text-primary-900 transition">Lupa password?</a>
                 </div>
 
                 <button type="submit"
-                    class="w-full bg-gradient-to-r from-red-600 to-red-700 text-white font-semibold py-3 px-4 rounded-lg hover:from-red-700 hover:to-red-800 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition shadow-lg">
+                    class="w-full rounded-full bg-gradient-to-r from-primary-600 via-primary-500 to-primary-700 px-5 py-3 text-white font-semibold shadow-lg transition hover:-translate-y-0.5 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-primary-200">
                     Masuk Dashboard
                 </button>
             </form>
-            <div class="mt-4 text-center">
-                <a href="{{ route('kasir.password.request') }}" class="text-sm text-red-600 hover:underline">Lupa password?</a>
-            </div>
         </div>
 
-        <div class="mt-6 text-center">
-            <button onclick="toggleDarkMode()" class="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition">
-                <span id="theme-label-dark" class="hidden">Mode Terang</span>
-                <span id="theme-label-light">Mode Gelap</span>
-            </button>
-        </div>
+        <p class="mt-6 text-center text-sm text-primary-900/75">Belum punya akun? Hubungi admin untuk aktivasi kasir.</p>
     </div>
 </div>
 @endsection
@@ -72,20 +63,18 @@ function toggleDarkMode() {
     if (html.classList.contains('dark')) {
         html.classList.remove('dark');
         localStorage.setItem('theme', 'light');
-        document.getElementById('theme-label-dark').classList.add('hidden');
-        document.getElementById('theme-label-light').classList.remove('hidden');
     } else {
         html.classList.add('dark');
         localStorage.setItem('theme', 'dark');
-        document.getElementById('theme-label-dark').classList.remove('hidden');
-        document.getElementById('theme-label-light').classList.add('hidden');
     }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    if (document.documentElement.classList.contains('dark')) {
-        document.getElementById('theme-label-dark').classList.remove('hidden');
-        document.getElementById('theme-label-light').classList.add('hidden');
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+    } else if (savedTheme === 'light') {
+        document.documentElement.classList.remove('dark');
     }
 });
 </script>

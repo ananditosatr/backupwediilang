@@ -15,6 +15,11 @@ class Order extends Model
         'total_amount',
         'status',
         'payment_method',
+        'order_method',
+        'city',
+        'district',
+        'address',
+        'delivery_time',
         'payment_deadline',
         'notes',
     ];
@@ -36,7 +41,7 @@ class Order extends Model
 
     public static function generateOrderNumber(): string
     {
-        $date = now()->format('Ymd');
+        $date = now()->format('dmY');
         $lastOrder = self::where('order_number', 'like', "ORD-{$date}-%")
             ->orderBy('id', 'desc')
             ->first();

@@ -5,9 +5,7 @@
 @section('content')
 <div class="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center px-4">
     <div class="text-center">
-        <div class="w-20 h-20 mx-auto bg-gradient-to-br from-red-600 to-red-700 rounded-2xl flex items-center justify-center shadow-lg mb-6">
-            <span class="text-3xl font-bold text-white">POS</span>
-        </div>
+        <img src="{{ asset('images/PT_rumah_cake_suprezz logo.png') }}" alt="PT Rumah Cake Suprezz" class="w-20 h-20 mx-auto object-contain mb-6">
 
         <h1 class="text-8xl font-bold text-red-600 dark:text-red-500 mb-4">404</h1>
         <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Halaman Tidak Ditemukan</h2>

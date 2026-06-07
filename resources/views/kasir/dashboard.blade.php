@@ -3,56 +3,47 @@
 @section('title', 'Kasir Dashboard - POS Rumah Cake suprezz')
 
 @section('content')
-<div class="min-h-screen bg-gray-50 dark:bg-gray-900">
+<div class="min-h-screen bg-gradient-to-br from-[#FFF4EC] via-[#FFF1E6] to-[#FEF6ED] text-[#3F2B25]">
 
     <!-- Navbar -->
-    <nav class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-40 shadow-sm">
+    <nav class="bg-gradient-to-r from-[#D9703E] via-[#FFAA64] to-[#C1542A] border-b border-[#D9703E]/30 sticky top-0 z-40 shadow-[0_20px_80px_rgba(217,112,62,0.25)] backdrop-blur-xl">
         <div class="px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 bg-gradient-to-br from-red-600 to-red-700 rounded-lg flex items-center justify-center shadow">
-                        <span class="text-lg font-bold text-white">POS</span>
-                    </div>
+                    <img src="{{ asset('images/PT_rumah_cake_suprezz logo.png') }}" alt="PT Rumah Cake Suprezz" class="w-12 h-12 object-contain rounded-2xl bg-white/95 p-1 shadow-md">
                     <div>
-                        <h1 class="text-base font-bold text-gray-900 dark:text-white">Kasir Dashboard</h1>
+                        <h1 class="text-base font-bold text-white">Kasir Dashboard</h1>
                         <div class="flex items-center gap-1.5 mt-0.5">
-                            <span id="live-dot" class="inline-block w-2 h-2 rounded-full bg-green-500 transition-colors duration-300"></span>
-                            <p class="text-xs text-gray-500 dark:text-gray-400">Live &bull; refresh 3 detik</p>
+                            <span id="live-dot" class="inline-block w-2 h-2 rounded-full bg-brand-soft transition-colors duration-300"></span>
+                            <p class="text-xs text-brand-white/80">Live &bull; refresh 3 detik</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="flex items-center space-x-4">
-                    <a href="{{ route('kasir.walkin') }}"
-                        class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white rounded-lg text-sm font-bold transition shadow">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
-                        </svg>
-                        Walk-in
-                    </a>
                     <a href="{{ route('kasir.history') }}"
-                        class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-600 transition">
+                        class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-brand-primary hover:bg-brand-primary-dark text-brand-white rounded-lg text-sm font-medium transition">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
                         History
                     </a>
                     <a href="{{ route('kasir.menu.index') }}"
-                        class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-600 transition">
+                        class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-brand-primary hover:bg-brand-primary-dark text-brand-white rounded-lg text-sm font-medium transition">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
                         </svg>
                         Kelola Menu
                     </a>
                     <a href="{{ route('customer.order') }}" target="_blank"
-                        class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-lg text-sm font-medium hover:bg-red-100 dark:hover:bg-red-900/40 transition">
+                        class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-brand-soft hover:bg-[#F8B07A] text-[#3F2B25] rounded-lg text-sm font-medium transition">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
                         </svg>
                         Preview Menu
                     </a>
-                    <button onclick="toggleDarkMode()" class="p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition">
+                    <button type="button" onclick="toggleDarkMode()" class="p-2 text-brand-white/90 hover:bg-white/20 rounded-lg transition">
                         <svg id="icon-moon" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
                         </svg>
@@ -62,13 +53,13 @@
                     </button>
 
                     <div class="hidden sm:block text-right">
-                        <p class="text-sm font-medium text-gray-700 dark:text-gray-200">{{ Auth::user()->username }}</p>
-                        <p class="text-xs text-gray-500 dark:text-gray-400">Kasir</p>
+                        <p class="text-sm font-medium text-brand-white">{{ Auth::user()->username }}</p>
+                        <p class="text-xs text-brand-white/80">Kasir</p>
                     </div>
 
                     <form method="POST" action="{{ route('kasir.logout') }}" class="inline">
                         @csrf
-                        <button type="submit" class="text-sm text-red-600 dark:text-red-400 hover:text-red-700 font-medium">
+                        <button type="submit" class="text-sm text-brand-soft hover:text-brand-white font-medium">
                             Logout
                         </button>
                     </form>
@@ -82,105 +73,190 @@
 
         <!-- Stats Cards -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-4 border-l-4 border-red-500">
-                <p class="text-xs font-medium text-gray-500 dark:text-gray-400">Pending Review</p>
-                <h3 id="stat-pending" class="text-2xl font-bold text-gray-900 dark:text-white mt-1">{{ $pendingReview->count() }}</h3>
+            <div class="bg-brand-soft/30 rounded-3xl shadow-xl p-4 border border-brand-soft/40 backdrop-blur-sm">
+                <p class="text-xs font-medium text-[#7A462F]">Pending Review</p>
+                <h3 id="stat-pending" class="text-2xl font-bold text-[#A24423] mt-1">{{ $pendingReview->count() }}</h3>
             </div>
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-4 border-l-4 border-blue-500">
-                <p class="text-xs font-medium text-gray-500 dark:text-gray-400">Processing</p>
-                <h3 id="stat-processing" class="text-2xl font-bold text-gray-900 dark:text-white mt-1">{{ $processingOrders->count() }}</h3>
+            <div class="bg-[#FFE8D8]/70 rounded-3xl shadow-xl p-4 border border-[#F4C2A3]/50 backdrop-blur-sm">
+                <p class="text-xs font-medium text-[#7A462F]">Processing</p>
+                <h3 id="stat-processing" class="text-2xl font-bold text-[#C1542A] mt-1">{{ $processingOrders->count() }}</h3>
             </div>
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-4 border-l-4 border-green-500">
-                <p class="text-xs font-medium text-gray-500 dark:text-gray-400">Ready Pickup</p>
-                <h3 id="stat-ready" class="text-2xl font-bold text-gray-900 dark:text-white mt-1">{{ $readyOrders->count() }}</h3>
+            <div class="bg-[#D9E8D7]/70 rounded-3xl shadow-xl p-4 border border-[#A8C9A9]/50 backdrop-blur-sm">
+                <p class="text-xs font-medium text-[#7A462F]">Ready Pickup</p>
+                <h3 id="stat-ready" class="text-2xl font-bold text-[#D9703E] mt-1">{{ $readyOrders->count() }}</h3>
             </div>
         </div>
 
         <!-- Pending Review Section -->
-        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm mb-6">
-            <div class="p-5 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
+        <div class="bg-white/80 rounded-3xl backdrop-blur-sm shadow-2xl mb-6 border border-brand-soft/40">
+            <div class="p-5 border-b border-brand-soft/40 flex items-center justify-between">
                 <div>
-                    <h2 class="text-base font-bold text-gray-900 dark:text-white">Antrian Review Pembayaran</h2>
-                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Auto-refresh setiap 3 detik</p>
+                    <h2 class="text-base font-bold text-[#3F2B25]">Antrian Review Pembayaran</h2>
+                    <p class="text-xs text-[#6B4F3F] mt-0.5">Auto-refresh setiap 3 detik</p>
                 </div>
             </div>
             <div id="pending-review-list" class="p-5 space-y-4">
                 @forelse($pendingReview as $order)
-                <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
-                    <div class="flex items-start justify-between mb-3">
-                        <div class="flex-1">
-                            <div class="flex items-center gap-2 mb-1">
-                                <span class="font-bold text-gray-900 dark:text-white">{{ $order->order_number }}</span>
-                                <span class="px-2 py-0.5 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 rounded-full text-xs font-medium">Pending</span>
+                <div class="border border-brand-soft/40 rounded-3xl p-4 bg-white/90 backdrop-blur-sm shadow-xl">
+                    <div class="grid gap-4 xl:grid-cols-[1.8fr_1fr]">
+                        <div>
+                            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-3">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span class="font-bold text-[#3F2B25]">{{ $order->order_number }}</span>
+                                        <span class="px-2 py-0.5 bg-[#FDD7C0] text-[#A24423] rounded-full text-xs font-medium">Pending</span>
+                                    </div>
+                                    <p class="text-sm text-[#6B4F3F]">{{ $order->customer_name }}</p>
+                                    @if($order->no_whatsapp)
+                                    <p class="text-xs text-[#D9703E]">WA: {{ $order->no_whatsapp }}</p>
+                                    @endif
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-sm text-[#6B4F3F]">Total</p>
+                                    <p class="text-xl font-bold text-[#D9703E]">Rp {{ number_format($order->total_amount, 0, ',', '.') }}</p>
+                                </div>
                             </div>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">{{ $order->customer_name }}</p>
-                            @if($order->no_whatsapp)
-                            <p class="text-xs text-green-600 dark:text-green-400">WA: {{ $order->no_whatsapp }}</p>
+
+                            <div class="grid gap-2 sm:grid-cols-4 sm:gap-4 mb-4 text-xs text-[#6B4F3F]">
+                                <span class="inline-flex items-center px-3 py-2 rounded-2xl bg-white/70 text-[#6B4F3F]">{{ $order->items->count() }} item</span>
+                                <span class="inline-flex items-center px-3 py-2 rounded-2xl bg-white/70 text-[#6B4F3F]">{{ $order->created_at->diffForHumans() }}</span>
+                                <span class="inline-flex items-center px-3 py-2 rounded-2xl bg-white/70 text-[#6B4F3F] capitalize">{{ $order->order_method === 'delivery' ? 'Delivery' : 'Pickup' }}</span>
+                                @if($order->payment_method)
+                                <span class="inline-flex items-center px-3 py-2 rounded-2xl bg-white/70 text-[#6B4F3F] capitalize">{{ $order->payment_method }}</span>
+                                @endif
+                            </div>
+
+                            @if($order->order_method === 'delivery' && ($order->city || $order->district || $order->address))
+                            <div class="rounded-2xl border border-[#F4C2A3] bg-[#FFFAF5] p-3 mb-4 text-sm text-[#3F2B25]">
+                                <p class="font-semibold">Alamat Antar</p>
+                                <p>{{ trim(implode(', ', array_filter([$order->city, $order->district, $order->address]))) }}</p>
+                                @if($order->delivery_time)
+                                <p class="mt-1 font-medium">Jam: {{ $order->delivery_time }}</p>
+                                @endif
+                            </div>
                             @endif
-                            <p class="text-sm font-bold text-red-600 dark:text-red-400">Rp {{ number_format($order->total_amount, 0, ',', '.') }}</p>
-                            <p class="text-xs text-gray-400 mt-1">{{ $order->items->count() }} item &bull; {{ $order->created_at->diffForHumans() }}</p>
+
+                            @if($order->notes)
+                            <div class="rounded-2xl border border-brand-soft/40 bg-white/60 p-3 mb-4 text-sm text-[#5A453A] italic">
+                                "{{ $order->notes }}"
+                            </div>
+                            @endif
+
+                            <div class="flex flex-wrap justify-center items-center gap-2">
+                                <button onclick="approvePayment({{ $order->id }})"
+                                    class="inline-flex items-center justify-center px-4 py-2 bg-[#D9703E] hover:bg-[#C1542A] text-white rounded-2xl text-sm font-semibold transition shadow-sm">
+                                    ✓ Approve
+                                </button>
+                                <button onclick="rejectOrder({{ $order->id }})"
+                                    class="inline-flex items-center justify-center px-4 py-2 bg-brand-primary hover:bg-brand-primary-dark text-brand-white rounded-2xl text-sm font-semibold transition shadow-sm">
+                                    ✕ Tolak
+                                </button>
+                            </div>
                         </div>
 
+                        <div class="space-y-3">
+                            <div class="rounded-3xl overflow-hidden border border-brand-soft/40 bg-white/70">
+                                @if($order->proof_image)
+                                <img src="{{ $order->proof_image }}" alt="Bukti Bayar" class="w-full h-48 object-cover cursor-pointer" onclick="viewProof('{{ $order->proof_image }}')">
+                                @else
+                                <div class="w-full h-48 flex items-center justify-center text-[#6B4F3F] text-sm">Belum ada bukti pembayaran</div>
+                                @endif
+                            </div>
+                            <div class="px-3 py-2 rounded-3xl border border-brand-soft/40 bg-white/70 text-xs text-[#6B4F3F]">
+                                Klik gambar untuk lihat bukti pembayaran.
+                            </div>
                         </div>
-
-                    @if($order->notes)
-                    <p class="text-xs text-gray-500 dark:text-gray-400 mb-3 italic">"{{ $order->notes }}"</p>
-                    @endif
-
-                    <div class="flex flex-col sm:flex-row gap-2">
-                        <button onclick="approvePayment({{ $order->id }})"
-                            class="flex-1 px-3 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-medium transition">
-                            Approve
-                        </button>
-                        <button onclick="rejectOrder({{ $order->id }})"
-                            class="flex-1 px-3 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg text-sm font-medium transition">
-                            Tolak
-                        </button>
                     </div>
                 </div>
                 @empty
-                <p class="text-center text-gray-400 dark:text-gray-500 py-8 text-sm">Tidak ada order yang perlu direview</p>
+                <p class="text-center text-[#6B4F3F] py-8 text-sm">Tidak ada order yang perlu direview</p>
                 @endforelse
             </div>
         </div>
 
         <!-- Order Status Management -->
-        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm">
-            <div class="p-5 border-b border-gray-200 dark:border-gray-700">
-                <h2 class="text-base font-bold text-gray-900 dark:text-white">Manajemen Status Order</h2>
+        <div class="bg-white/80 rounded-3xl backdrop-blur-sm shadow-2xl border border-brand-soft/40">
+            <div class="p-5 border-b border-brand-soft/40">
+                <h2 class="text-base font-bold text-[#3F2B25]">Manajemen Status Order</h2>
             </div>
-            <div id="order-management-list" class="p-5 space-y-3">
-                @forelse($processingOrders as $order)
-                <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4 flex items-center justify-between">
-                    <div>
-                        <div class="flex items-center gap-2 mb-1">
-                            <span class="font-semibold text-gray-900 dark:text-white text-sm">{{ $order->order_number }}</span>
-                            <span class="px-2 py-0.5 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 rounded-full text-xs">Diproses</span>
+            <div id="order-management-list" class="p-5 space-y-4">
+                @if($processingOrders->isEmpty() && $readyOrders->isEmpty())
+                <p class="text-center text-[#6B4F3F] text-sm py-6">Tidak ada order aktif saat ini.</p>
+                @endif
+
+                @foreach($processingOrders as $order)
+                <div class="border border-brand-soft/40 rounded-3xl p-4 bg-white/90 backdrop-blur-sm shadow-xl">
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="font-semibold text-[#3F2B25]">{{ $order->order_number }}</span>
+                                <span class="px-2 py-0.5 bg-[#FFE8D8] text-[#C1542A] rounded-full text-xs">Diproses</span>
+                            </div>
+                            <p class="text-xs text-[#6B4F3F]">{{ $order->customer_name }}@if($order->no_whatsapp) &bull; WA: {{ $order->no_whatsapp }}@endif</p>
+                            <p class="text-xs text-[#6B4F3F] mt-2">Metode: {{ $order->order_method === 'delivery' ? 'Antar' : 'Pickup' }}</p>
+                            @if($order->order_method === 'delivery' && ($order->city || $order->district || $order->address))
+                            <p class="text-xs text-[#6B4F3F]">Alamat: {{ trim(implode(', ', array_filter([$order->city, $order->district, $order->address]))) }}</p>
+                            @endif
+                            @if($order->delivery_time)
+                            <p class="text-xs text-[#6B4F3F]">Jam: {{ $order->delivery_time }}</p>
+                            @endif
                         </div>
-                        <p class="text-xs text-gray-500 dark:text-gray-400">{{ $order->customer_name }}@if($order->no_whatsapp) &bull; WA: {{ $order->no_whatsapp }}@endif &bull; Rp {{ number_format($order->total_amount, 0, ',', '.') }}</p>
+                        <div class="flex items-center gap-3 flex-wrap">
+                            <p class="text-sm font-semibold text-[#D9703E]">Rp {{ number_format($order->total_amount, 0, ',', '.') }}</p>
+                            @if($order->order_method === 'delivery')
+                            <a href="{{ route('kasir.delivery.note', $order->order_number) }}" target="_blank"
+                                class="px-4 py-2 bg-[#E2E8F0] hover:bg-[#CBD5E1] text-[#1F2937] rounded-2xl text-sm font-semibold transition shadow-sm">
+                                Surat Jalan
+                            </a>
+                            @endif
+                            <a href="{{ route('kasir.invoice', $order->order_number) }}" target="_blank"
+                                class="px-4 py-2 bg-[#F4E1D8] hover:bg-[#E6C9B6] text-[#3F2B25] rounded-2xl text-sm font-semibold transition shadow-sm">
+                                Invoice
+                            </a>
+                            <button onclick="updateStatus({{ $order->id }}, 'ready')"
+                                class="px-4 py-2 bg-[#D9703E] hover:bg-[#C1542A] text-white rounded-2xl text-sm font-semibold transition shadow-sm">
+                                Siap
+                            </button>
+                        </div>
                     </div>
-                    <button onclick="updateStatus({{ $order->id }}, 'ready')"
-                        class="px-3 py-1.5 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-medium transition">
-                        Siap
-                    </button>
                 </div>
-                @empty
-                <p class="text-center text-gray-400 text-sm py-4">Tidak ada order sedang diproses</p>
-                @endforelse
+                @endforeach
 
                 @foreach($readyOrders as $order)
-                <div class="border border-green-200 dark:border-green-800 rounded-lg p-4 flex items-center justify-between bg-green-50 dark:bg-green-900/10">
-                    <div>
-                        <div class="flex items-center gap-2 mb-1">
-                            <span class="font-semibold text-gray-900 dark:text-white text-sm">{{ $order->order_number }}</span>
-                            <span class="px-2 py-0.5 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-full text-xs">Siap Diambil</span>
+                <div class="border border-brand-soft/40 rounded-3xl p-4 bg-white/90 shadow-xl backdrop-blur-sm">
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="font-semibold text-[#3F2B25]">{{ $order->order_number }}</span>
+                                <span class="px-2 py-0.5 bg-[#D9E8D7] text-[#D9703E] rounded-full text-xs">Siap Diambil</span>
+                            </div>
+                            <p class="text-xs text-[#6B4F3F]">{{ $order->customer_name }}@if($order->no_whatsapp) &bull; WA: {{ $order->no_whatsapp }}@endif</p>
+                            <p class="text-xs text-[#6B4F3F] mt-2">Metode: {{ $order->order_method === 'delivery' ? 'Antar' : 'Pickup' }}</p>
+                            @if($order->order_method === 'delivery' && ($order->city || $order->district || $order->address))
+                            <p class="text-xs text-[#6B4F3F]">Alamat: {{ trim(implode(', ', array_filter([$order->city, $order->district, $order->address]))) }}</p>
+                            @endif
+                            @if($order->delivery_time)
+                            <p class="text-xs text-[#6B4F3F]">Jam: {{ $order->delivery_time }}</p>
+                            @endif
                         </div>
-                        <p class="text-xs text-gray-500 dark:text-gray-400">{{ $order->customer_name }}@if($order->no_whatsapp) &bull; WA: {{ $order->no_whatsapp }}@endif &bull; Rp {{ number_format($order->total_amount, 0, ',', '.') }}</p>
+                        <div class="flex items-center gap-3 flex-wrap">
+                            <p class="text-sm font-semibold text-[#D9703E]">Rp {{ number_format($order->total_amount, 0, ',', '.') }}</p>
+                            @if($order->order_method === 'delivery')
+                            <a href="{{ route('kasir.delivery.note', $order->order_number) }}" target="_blank"
+                                class="px-4 py-2 bg-[#E2E8F0] hover:bg-[#CBD5E1] text-[#1F2937] rounded-2xl text-sm font-semibold transition shadow-sm">
+                                Surat Jalan
+                            </a>
+                            @endif
+                            <a href="{{ route('kasir.invoice', $order->order_number) }}" target="_blank"
+                                class="px-4 py-2 bg-[#F4E1D8] hover:bg-[#E6C9B6] text-[#3F2B25] rounded-2xl text-sm font-semibold transition shadow-sm">
+                                Invoice
+                            </a>
+                            <button onclick="updateStatus({{ $order->id }}, 'completed')"
+                                class="px-4 py-2 bg-brand-primary hover:bg-brand-primary-dark text-brand-white rounded-2xl text-sm font-semibold transition shadow-sm">
+                                Selesai
+                            </button>
+                        </div>
                     </div>
-                    <button onclick="updateStatus({{ $order->id }}, 'completed')"
-                        class="px-3 py-1.5 bg-gray-600 hover:bg-gray-700 text-white rounded-lg text-sm font-medium transition">
-                        Selesai
-                    </button>
                 </div>
                 @endforeach
             </div>
@@ -190,11 +266,11 @@
 </div>
 
 <!-- Proof Image Modal -->
-<div id="proof-modal" class="hidden fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4" onclick="closeProofModal()">
-    <div class="bg-white dark:bg-gray-800 rounded-xl max-w-lg w-full p-5" onclick="event.stopPropagation()">
+<div id="proof-modal" class="hidden fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 pointer-events-none" onclick="closeProofModal()">
+    <div class="pointer-events-auto bg-white dark:bg-[#3B2A22] rounded-xl max-w-lg w-full p-5" onclick="event.stopPropagation()">
         <div class="flex justify-between items-center mb-4">
-            <h3 class="font-bold text-gray-900 dark:text-white">Bukti Pembayaran</h3>
-            <button onclick="closeProofModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200">
+            <h3 class="font-bold text-[#3F2B25] dark:text-brand-soft">Bukti Pembayaran</h3>
+            <button onclick="closeProofModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-700">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                 </svg>
@@ -212,24 +288,29 @@
 <script>
 function toggleDarkMode() {
     const html = document.documentElement;
-    if (html.classList.contains('dark')) {
+    const isDark = html.classList.contains('dark');
+    if (isDark) {
         html.classList.remove('dark');
         localStorage.setItem('theme', 'light');
-        document.getElementById('icon-moon').classList.remove('hidden');
-        document.getElementById('icon-sun').classList.add('hidden');
     } else {
         html.classList.add('dark');
         localStorage.setItem('theme', 'dark');
-        document.getElementById('icon-moon').classList.add('hidden');
-        document.getElementById('icon-sun').classList.remove('hidden');
     }
+    updateDarkModeIcons();
+}
+
+function updateDarkModeIcons() {
+    const isDark = document.documentElement.classList.contains('dark');
+    document.getElementById('icon-moon').classList.toggle('hidden', isDark);
+    document.getElementById('icon-sun').classList.toggle('hidden', !isDark);
+}
+
+if (document.readyState !== 'loading') {
+    updateDarkModeIcons();
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    if (document.documentElement.classList.contains('dark')) {
-        document.getElementById('icon-moon').classList.add('hidden');
-        document.getElementById('icon-sun').classList.remove('hidden');
-    }
+    updateDarkModeIcons();
 });
 
 function viewProof(imageBase64) {
@@ -332,7 +413,7 @@ function updateStatus(orderId, newStatus) {
 }
 
 function showToast(type, message) {
-    const colors = { success: 'bg-green-500', error: 'bg-red-500', warning: 'bg-yellow-500' };
+    const colors = { success: 'bg-[#D9703E]', error: 'bg-brand-primary', warning: 'bg-brand-soft' };
     const toast = document.getElementById('toast');
     toast.className = `fixed top-4 right-4 z-50 px-5 py-3 rounded-lg shadow-lg text-white text-sm font-medium ${colors[type]}`;
     toast.textContent = message;
@@ -364,47 +445,70 @@ function renderPendingReview(orders) {
     if (badge) badge.textContent = orders.length;
 
     if (orders.length === 0) {
-        wrap.innerHTML = '<p class="text-center text-gray-400 dark:text-gray-500 py-8 text-sm">Tidak ada order yang perlu direview</p>';
+        wrap.innerHTML = '<p class="text-center text-[#6B4F3F] py-8 text-sm">Tidak ada order yang perlu direview</p>';
         return;
     }
 
     wrap.innerHTML = orders.map(o => {
         return `
-        <div class="border border-gray-200 dark:border-gray-700 rounded-xl p-4 mb-4 bg-white dark:bg-gray-800 shadow-sm text-left">
-            <div class="flex items-start justify-between mb-3">
-                <div class="flex-1">
-                    <div class="flex items-center gap-2 mb-1">
-                        <span class="font-bold text-gray-900 dark:text-white text-base">${o.order_number}</span>
-                        <span class="px-2 py-0.5 bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 rounded-full text-xs font-medium">Pending</span>
-                    </div>
-                    <p class="text-sm text-gray-700 dark:text-gray-300 font-semibold">${o.customer_name}</p>
-                    ${o.no_whatsapp ? `<p class="text-xs text-green-600 dark:text-green-400">WA: ${o.no_whatsapp}</p>` : ''}
-                    <p class="text-lg font-black text-red-600 dark:text-red-400 mt-1">${formatRupiah(o.total_amount)}</p>
-                    <p class="text-xs text-gray-400 mt-1">${o.items_count} item &bull; ${o.created_at}</p>
-                    ${o.notes ? `<p class="text-xs text-gray-500 dark:text-gray-400 mt-1 italic">"${o.notes}"</p>` : ''}
-                </div>
-                ${o.proof_image
-                    ? `<div class="ml-3 flex-shrink-0">
-                        <div class="w-20 h-20 rounded-lg overflow-hidden border border-gray-200 dark:border-gray-600 cursor-pointer hover:scale-105 transition"
-                            onclick="viewProof('${o.proof_image}')">
-                            <img src="${o.proof_image}" alt="Bukti Bayar" class="w-full h-full object-cover">
+        <div class="border border-brand-soft/40 rounded-3xl p-4 mb-4 bg-white/80 shadow-xl backdrop-blur-sm">
+            <div class="grid gap-4 xl:grid-cols-[1.8fr_1fr]">
+                <div>
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-3">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="font-bold text-[#3F2B25] text-base">${o.order_number}</span>
+                                <span class="px-2 py-0.5 bg-[#FDD7C0] text-[#A24423] rounded-full text-xs font-medium">Pending</span>
+                            </div>
+                            <p class="text-sm text-[#3F2B25]">${o.customer_name}</p>
+                            ${o.no_whatsapp ? `<p class="text-xs text-[#D9703E]">WA: ${o.no_whatsapp}</p>` : ''}
                         </div>
-                       </div>`
-                    : `<div class="ml-3 w-20 h-20 rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-600 flex items-center justify-center flex-shrink-0">
-                            <span class="text-xs text-gray-400 text-center px-1">Belum upload</span>
-                       </div>`
-                }
-            </div>
-            
-            <div class="flex gap-2 mt-4">
-                <button type="button" onclick="approvePayment('${o.id}')"
-                    class="flex-1 px-4 py-2.5 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-bold transition shadow-sm text-center">
-                    ✓ Approve
-                </button>
-                <button type="button" onclick="rejectOrder('${o.id}')"
-                    class="flex-1 px-4 py-2.5 bg-red-600 hover:bg-red-700 text-white rounded-lg text-sm font-bold transition shadow-sm text-center">
-                    ✕ Tolak
-                </button>
+                        <div class="text-right">
+                            <p class="text-sm text-[#6B4F3F]">Total</p>
+                            <p class="text-xl font-bold text-[#D9703E]">${formatRupiah(o.total_amount)}</p>
+                        </div>
+                    </div>
+
+                    <div class="grid gap-2 sm:grid-cols-3 sm:gap-4 mb-4 text-xs text-[#3F2B25]">
+                        <span class="inline-flex items-center px-3 py-2 rounded-2xl bg-white/20 text-[#3F2B25]">${o.items_count} item</span>
+                        <span class="inline-flex items-center px-3 py-2 rounded-2xl bg-white/20 text-[#3F2B25]">${o.created_at}</span>
+                        <span class="inline-flex items-center px-3 py-2 rounded-2xl bg-white/20 text-[#3F2B25] capitalize">${o.order_method === 'delivery' ? 'Delivery' : 'Pickup'}</span>
+                        ${o.payment_method ? `<span class="inline-flex items-center px-3 py-2 rounded-2xl bg-white/20 text-[#3F2B25] capitalize">${o.payment_method}</span>` : ''}
+                    </div>
+
+                    ${o.order_method === 'delivery' && (o.city || o.district || o.address) ? `
+                    <div class="rounded-2xl border border-[#F4C2A3] bg-[#FFFAF5] p-3 mb-4 text-sm text-[#3F2B25]">
+                        <p class="font-semibold">Alamat Antar</p>
+                        <p>${[o.city, o.district, o.address].filter(Boolean).join(', ')}</p>
+                        ${o.delivery_time ? `<p class="mt-1 font-medium">Jam: ${o.delivery_time}</p>` : ''}
+                    </div>
+                    ` : ''}
+
+                    ${o.notes ? `<div class="rounded-2xl border border-brand-soft/40 bg-white/70 p-3 mb-4 text-sm text-[#5A453A] italic">"${o.notes}"</div>` : ''}
+
+                    <div class="flex flex-wrap justify-center items-center gap-2">
+                        <button type="button" onclick="approvePayment('${o.id}')"
+                            class="inline-flex items-center justify-center px-4 py-2 bg-[#D9703E] hover:bg-[#C1542A] text-white rounded-2xl text-sm font-semibold transition shadow-sm">
+                            ✓ Approve
+                        </button>
+                        <button type="button" onclick="rejectOrder('${o.id}')"
+                            class="inline-flex items-center justify-center px-4 py-2 bg-brand-primary hover:bg-brand-primary-dark text-brand-white rounded-2xl text-sm font-semibold transition shadow-sm">
+                            ✕ Tolak
+                        </button>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <div class="rounded-3xl overflow-hidden border border-brand-soft/40 bg-white/70">
+                        ${o.proof_image
+                            ? `<img src="${o.proof_image}" alt="Bukti Bayar" class="w-full h-48 object-cover cursor-pointer" onclick="viewProof('${o.proof_image}')">`
+                            : `<div class="w-full h-48 flex items-center justify-center text-[#6B4F3F] text-sm">Belum ada bukti pembayaran</div>`
+                        }
+                    </div>
+                    <div class="px-3 py-2 rounded-3xl border border-brand-soft/40 bg-white/70 text-xs text-[#6B4F3F]">
+                        Klik gambar untuk melihat bukti pembayaran.
+                    </div>
+                </div>
             </div>
         </div>
         `;
@@ -421,47 +525,95 @@ function renderOrderManagement(processing, ready) {
     let html = '';
 
     if (processing.length === 0 && ready.length === 0) {
-        html = '<p class="text-center text-gray-400 text-sm py-4">Tidak ada order aktif</p>';
+        html = '<p class="text-center text-[#6B4F3F] text-sm py-6">Tidak ada order aktif</p>';
     }
 
     html += processing.map(o => `
-        <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-4 flex items-center justify-between">
-            <div>
-                <div class="flex items-center gap-2 mb-1">
-                    <span class="font-semibold text-gray-900 dark:text-white text-sm">${o.order_number}</span>
-                    <span class="px-2 py-0.5 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 rounded-full text-xs">Diproses</span>
+        <div class="border border-brand-soft/40 rounded-3xl p-4 mb-4 bg-white/80 shadow-xl backdrop-blur-sm">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                <div>
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="font-semibold text-[#3F2B25]">${o.order_number}</span>
+                        <span class="px-2 py-0.5 bg-[#FFE8D8] text-[#C1542A] rounded-full text-xs">Diproses</span>
+                    </div>
+                    <p class="text-xs text-[#3F2B25]">${o.customer_name}${o.no_whatsapp ? ` &bull; WA: ${o.no_whatsapp}` : ''}</p>
+                    <p class="text-xs text-[#3F2B25] mt-2">Metode: ${o.order_method === 'delivery' ? 'Antar' : 'Pickup'}</p>
+                    ${o.order_method === 'delivery' && (o.city || o.district || o.address) ? `<p class="text-xs text-[#3F2B25]">Alamat: ${[o.city, o.district, o.address].filter(Boolean).join(', ')}</p>` : ''}
+                    ${o.delivery_time ? `<p class="text-xs text-[#3F2B25]">Jam: ${o.delivery_time}</p>` : ''}
                 </div>
-                <p class="text-xs text-gray-500 dark:text-gray-400">${o.customer_name}${o.no_whatsapp ? ` &bull; WA: ${o.no_whatsapp}` : ''} &bull; ${formatRupiah(o.total_amount)}</p>
+                <div class="flex items-center gap-3 flex-wrap">
+                    <p class="text-sm font-semibold text-[#D9703E]">${formatRupiah(o.total_amount)}</p>
+                    ${o.order_method === 'delivery' ? `
+                    <a href="/kasir/delivery-note/${o.order_number}" target="_blank"
+                        class="px-4 py-2 bg-[#E2E8F0] hover:bg-[#CBD5E1] text-[#1F2937] rounded-2xl text-sm font-semibold transition shadow-sm">
+                        Surat Jalan
+                    </a>
+                    ` : ''}
+                    <a href="/kasir/invoice/${o.order_number}" target="_blank"
+                        class="px-4 py-2 bg-[#F4E1D8] hover:bg-[#E6C9B6] text-[#3F2B25] rounded-2xl text-sm font-semibold transition shadow-sm">
+                        Invoice
+                    </a>
+                    <button onclick="updateStatus(${o.id}, 'ready')"
+                        class="px-4 py-2 bg-[#D9703E] hover:bg-[#C1542A] text-white rounded-2xl text-sm font-semibold transition shadow-sm">
+                        Siap
+                    </button>
+                </div>
             </div>
-            <button onclick="updateStatus(${o.id}, 'ready')"
-                class="px-3 py-1.5 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-medium transition">
-                Siap
-            </button>
         </div>
     `).join('');
 
     html += ready.map(o => `
-        <div class="border border-green-200 dark:border-green-800 rounded-lg p-4 flex items-center justify-between bg-green-50 dark:bg-green-900/10">
-            <div>
-                <div class="flex items-center gap-2 mb-1">
-                    <span class="font-semibold text-gray-900 dark:text-white text-sm">${o.order_number}</span>
-                    <span class="px-2 py-0.5 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-full text-xs">Siap Diambil</span>
+        <div class="border border-brand-soft/40 rounded-3xl p-4 mb-4 bg-white/80 shadow-xl backdrop-blur-sm">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                <div>
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="font-semibold text-[#3F2B25]">${o.order_number}</span>
+                        <span class="px-2 py-0.5 bg-[#D9E8D7] text-[#D9703E] rounded-full text-xs">Siap Diambil</span>
+                    </div>
+                    <p class="text-xs text-[#3F2B25]">${o.customer_name}${o.no_whatsapp ? ` &bull; WA: ${o.no_whatsapp}` : ''}</p>
+                    <p class="text-xs text-[#3F2B25] mt-2">Metode: ${o.order_method === 'delivery' ? 'Antar' : 'Pickup'}</p>
+                    ${o.order_method === 'delivery' && (o.city || o.district || o.address) ? `<p class="text-xs text-[#3F2B25]">Alamat: ${[o.city, o.district, o.address].filter(Boolean).join(', ')}</p>` : ''}
+                    ${o.delivery_time ? `<p class="text-xs text-[#3F2B25]">Jam: ${o.delivery_time}</p>` : ''}
                 </div>
-                <p class="text-xs text-gray-500 dark:text-gray-400">${o.customer_name}${o.no_whatsapp ? ` &bull; WA: ${o.no_whatsapp}` : ''} &bull; ${formatRupiah(o.total_amount)}</p>
+                <div class="flex items-center gap-3 flex-wrap">
+                    <p class="text-sm font-semibold text-[#D9703E]">${formatRupiah(o.total_amount)}</p>
+                    ${o.order_method === 'delivery' ? `
+                    <a href="/kasir/delivery-note/${o.order_number}" target="_blank"
+                        class="px-4 py-2 bg-[#E2E8F0] hover:bg-[#CBD5E1] text-[#1F2937] rounded-2xl text-sm font-semibold transition shadow-sm">
+                        Surat Jalan
+                    </a>
+                    ` : ''}
+                    <a href="/kasir/invoice/${o.order_number}" target="_blank"
+                        class="px-4 py-2 bg-[#F4E1D8] hover:bg-[#E6C9B6] text-[#3F2B25] rounded-2xl text-sm font-semibold transition shadow-sm">
+                        Invoice
+                    </a>
+                    <button onclick="updateStatus(${o.id}, 'completed')"
+                        class="px-4 py-2 bg-brand-primary hover:bg-brand-primary-dark text-brand-white rounded-2xl text-sm font-semibold transition shadow-sm">
+                        Selesai
+                    </button>
+                </div>
             </div>
-            <button onclick="updateStatus(${o.id}, 'completed')"
-                class="px-3 py-1.5 bg-gray-600 hover:bg-gray-700 text-white rounded-lg text-sm font-medium transition">
-                Selesai
-            </button>
         </div>
     `).join('');
-
     wrap.innerHTML = html;
+}
+
+function redirectToLogin() {
+    window.location.href = LOGIN_URL;
 }
 
 function pollDashboard() {
     fetch(POLL_URL, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
-        .then(r => r.json())
+        .then(r => {
+            if (r.status === 401 || r.status === 419) {
+                redirectToLogin();
+                throw new Error('Unauthorized');
+            }
+            if (!r.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return r.json();
+        })
         .then(data => {
             // Notif jika ada order baru masuk
             if (data.pending_review.length > lastPendingCount) {
@@ -485,12 +637,41 @@ function pollDashboard() {
         })
         .catch(() => {
             const dot = document.getElementById('live-dot');
-            if (dot) dot.classList.add('bg-red-500');
+            if (dot) dot.classList.add('bg-brand-primary');
         });
 }
 
 // ── Auto Polling ──────────────────────────────────────────────
 setInterval(pollDashboard, 3000);
+
+window.addEventListener('pageshow', function(event) {
+    const navigation = performance.getEntriesByType('navigation')[0];
+    if (event.persisted || (navigation && navigation.type === 'back_forward')) {
+        window.location.reload();
+    }
+});
+
+// ── Auto Logout / Redirect Idle ───────────────────────────────────
+let idleTimeout;
+const IDLE_LIMIT_MS = 5 * 60 * 1000; // 5 menit
+const LOGIN_URL = '{{ route('kasir.login') }}';
+
+function resetIdleTimer() {
+    if (idleTimeout) {
+        clearTimeout(idleTimeout);
+    }
+    idleTimeout = setTimeout(() => {
+        window.location.href = LOGIN_URL;
+    }, IDLE_LIMIT_MS);
+}
+
+function initIdleRedirect() {
+    const events = ['mousemove', 'mousedown', 'keydown', 'touchstart', 'scroll'];
+    events.forEach(event => window.addEventListener(event, resetIdleTimer, true));
+    resetIdleTimer();
+}
+
+window.addEventListener('load', initIdleRedirect);
 
 // Fitur Tambahan: Menampilkan dan menyembunyikan modal
 function bukaModalTunai(orderId) {
@@ -517,11 +698,11 @@ function hitungKembalian(orderId) {
         btnKonfirmasi.disabled = true;
     } else if (kembalian < 0) {
         infoKembalian.innerText = "Uang Kurang: Rp " + Math.abs(kembalian).toLocaleString('id-ID');
-        infoKembalian.className = "text-lg font-bold text-red-600 dark:text-red-400";
+        infoKembalian.className = "text-lg font-bold text-brand-primary dark:text-brand-primary-dark";
         btnKonfirmasi.disabled = true;
     } else {
         infoKembalian.innerText = "Rp " + kembalian.toLocaleString('id-ID');
-        infoKembalian.className = "text-xl font-bold text-green-600 dark:text-green-400";
+        infoKembalian.className = "text-xl font-bold text-[#D9703E] dark:text-[#96C69C]";
         btnKonfirmasi.disabled = false;
     }
 }

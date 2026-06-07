@@ -126,6 +126,11 @@ class KasirController extends Controller
                 'created_at'   => $o->created_at->diffForHumans(),
                 'notes'        => $o->notes,
                 'proof_image'  => $o->payment?->proof_image_base64,
+                'order_method' => $o->order_method,
+                'city'         => $o->city,
+                'district'     => $o->district,
+                'address'      => $o->address,
+                'delivery_time'=> $o->delivery_time,
             ]);
 
         $processingOrders = Order::where('status', 'processing')
@@ -138,6 +143,11 @@ class KasirController extends Controller
                 'customer_name'=> $o->customer_name,
                 'no_whatsapp'  => $o->no_whatsapp,
                 'total_amount' => $o->total_amount,
+                'order_method' => $o->order_method,
+                'city'         => $o->city,
+                'district'     => $o->district,
+                'address'      => $o->address,
+                'delivery_time'=> $o->delivery_time,
             ]);
 
         $readyOrders = Order::where('status', 'ready')
@@ -149,6 +159,11 @@ class KasirController extends Controller
                 'customer_name'=> $o->customer_name,
                 'no_whatsapp'  => $o->no_whatsapp,
                 'total_amount' => $o->total_amount,
+                'order_method' => $o->order_method,
+                'city'         => $o->city,
+                'district'     => $o->district,
+                'address'      => $o->address,
+                'delivery_time'=> $o->delivery_time,
             ]);
 
         return response()->json([
@@ -225,7 +240,18 @@ class KasirController extends Controller
             ->with(['items.menu'])
             ->firstOrFail();
 
-        return view('kasir.invoice', compact('order'));
+        return view('kasir.invoice', compact('order'))
+            ->with('documentType', 'invoice');
+    }
+
+    public function deliveryNote($orderNumber)
+    {
+        $order = Order::where('order_number', $orderNumber)
+            ->with(['items.menu'])
+            ->firstOrFail();
+
+        return view('kasir.invoice', compact('order'))
+            ->with('documentType', 'surat_jalan');
     }
 
     public function printReceipt($orderNumber)
