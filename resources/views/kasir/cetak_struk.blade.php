@@ -57,7 +57,6 @@
             <p><strong>Catatan:</strong> {{ $order->notes }}</p>
         @endif
         <div class="divider"></div>
-        <p class="footer">Terima kasih telah berbelanja!</p>
         <p class="footer">www.rumahcakesuprezz.id</p>
         <div class="no-print" style="text-align:center; margin-top: 20px;">
             <button onclick="window.print()" style="padding: 8px 14px; background: #111; color: #fff; border:none; border-radius:6px; cursor:pointer;">Cetak Ulang</button>

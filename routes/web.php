@@ -50,12 +50,9 @@ Route::prefix('kasir')->group(function () {
         Route::delete('/menu/{menu}', [MenuManagerController::class, 'destroyMenu'])->name('kasir.menu.destroy');
         Route::patch('/menu/{menu}/toggle', [MenuManagerController::class, 'toggleAvailable'])->name('kasir.menu.toggle');
 
-        // Walk-in Order
-        Route::get('/walkin', [KasirController::class, 'walkinForm'])->name('kasir.walkin');
-        Route::post('/walkin', [KasirController::class, 'walkinStore'])->name('kasir.walkin.store');
-
-        // Invoice
+        // Invoice / Delivery Note
         Route::get('/invoice/{orderNumber}', [KasirController::class, 'invoice'])->name('kasir.invoice');
+        Route::get('/delivery-note/{orderNumber}', [KasirController::class, 'deliveryNote'])->name('kasir.delivery.note');
         Route::post('/orders/{orderId}/cash-pay', [KasirController::class, 'processCashPayment'])->name('kasir.cash.pay');
         Route::get('/struk/{orderNumber}', [KasirController::class, 'printReceipt'])->name('kasir.print.receipt');
 
