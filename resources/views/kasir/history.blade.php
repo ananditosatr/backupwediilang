@@ -52,13 +52,81 @@
             </div>
         </div>
 
-        <!-- Revenue Card -->
-        <div class="bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl p-5 mb-6 shadow">
-            <p class="text-primary-100 text-sm font-medium mb-1">Total Pendapatan (Order Selesai)</p>
-            <p class="text-3xl font-bold text-white">Rp {{ number_format($stats['total_revenue'], 0, ',', '.') }}</p>
-            <p class="text-primary-200 text-xs mt-1">
-                {{ request('date') ? 'Tanggal: ' . \Carbon\Carbon::parse(request('date'))->format('d M Y') : 'Hari ini: ' . now()->format('d M Y') }}
-            </p>
+        <!-- Revenue and Trend Cards -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
+            <div class="bg-gradient-to-r from-primary-600 to-primary-700 rounded-xl p-5 shadow">
+                <p class="text-primary-100 text-sm font-medium mb-1">Total Pendapatan (Order Selesai)</p>
+                <p class="text-3xl font-bold text-white">Rp {{ number_format($stats['total_revenue'], 0, ',', '.') }}</p>
+                <p class="text-primary-200 text-xs mt-2">{{ $stats['period_label'] }} vs {{ $stats['previous_label'] }}</p>
+                @php
+                    $revenueUp = $stats['revenue_trend'] > 0;
+                    $revenueSame = $stats['revenue_trend'] === 0;
+                @endphp
+                <div class="mt-4 inline-flex items-center gap-2 px-4 py-3 rounded-3xl bg-white/10 text-white text-sm">
+                    <span class="inline-flex items-center justify-center w-9 h-9 rounded-full {{ $revenueSame ? 'bg-white/20 text-white' : ($revenueUp ? 'bg-emerald-200 text-emerald-900' : 'bg-red-200 text-red-900') }}">
+                        @if($revenueSame)
+                            =
+                        @elseif($revenueUp)
+                            ↑
+                        @else
+                            ↓
+                        @endif
+                    </span>
+                    <div>
+                        <p class="text-xs uppercase tracking-[0.24em] opacity-80">Perubahan</p>
+                        <p class="font-semibold">{{ $revenueUp ? 'Naik' : ($revenueSame ? 'Stabil' : 'Turun') }} {{ abs($stats['revenue_change_percent']) }}%</p>
+                    </div>
+                </div>
+                <p class="text-primary-200 text-xs mt-3">Pendapatan sebelumnya: Rp {{ number_format($stats['previous_revenue'], 0, ',', '.') }}</p>
+            </div>
+
+            <div class="bg-white/80 rounded-xl p-5 shadow border border-primary-200">
+                <p class="text-sm text-primary-700 font-medium mb-3">Ringkasan Penjualan</p>
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs text-primary-600">Total Order</span>
+                        <span class="font-semibold text-primary-900">{{ $stats['total_orders'] }}</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs text-primary-600">Rata-rata Order</span>
+                        <span class="font-semibold text-primary-900">Rp {{ number_format($stats['average_order'], 0, ',', '.') }}</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs text-primary-600">Dibatalkan</span>
+                        <span class="font-semibold text-red-600">{{ $stats['cancelled'] }}</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs text-primary-600">Order vs {{ $stats['previous_label'] }}</span>
+                        <span class="font-semibold {{ $stats['order_trend'] > 0 ? 'text-emerald-700' : ($stats['order_trend'] < 0 ? 'text-red-700' : 'text-primary-900') }}">
+                            {{ $stats['order_trend'] > 0 ? 'Naik' : ($stats['order_trend'] < 0 ? 'Turun' : 'Stabil') }} {{ abs($stats['order_change_percent']) }}%
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white/80 rounded-xl p-5 shadow border border-primary-200">
+                <p class="text-sm text-primary-700 font-medium mb-3">Detail Laporan</p>
+                <div class="space-y-4 text-primary-700 text-sm">
+                    <div>
+                        <p class="text-xs text-primary-500">Order Selesai</p>
+                        <p class="font-semibold text-primary-900">{{ $stats['completed'] }}</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-primary-500">Diproses / Siap</p>
+                        <p class="font-semibold text-primary-900">{{ $stats['processing'] }}</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-primary-500">Pendapatan naik/turun</p>
+                        <p class="font-semibold {{ $revenueUp ? 'text-emerald-700' : ($revenueSame ? 'text-primary-900' : 'text-red-700') }}">
+                            {{ $revenueUp ? 'Naik' : ($revenueSame ? 'Stabil' : 'Turun') }} {{ abs($stats['revenue_change_percent']) }}%
+                        </p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-primary-500">Periode pembanding</p>
+                        <p class="font-semibold text-primary-900">{{ $stats['previous_label'] }}</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Filter -->
@@ -94,6 +162,61 @@
                     </a>
                 </div>
             </form>
+        </div>
+
+        <!-- Trend and Export -->
+        <div class="grid gap-4 mb-6 lg:grid-cols-1 max-w-[640px] mx-auto">
+            <div class="bg-white/80 rounded-xl p-3 shadow border border-primary-200/50 w-full">
+                <div class="flex flex-col gap-3 mb-4">
+                    <div>
+                        <p class="text-sm text-primary-700 font-medium">Grafik Tren 7 Hari</p>
+                        <p class="text-xs text-primary-500">Pendapatan dan jumlah order</p>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-2 justify-start">
+                        <button type="button" onclick="window.location.href='{{ route('kasir.history.export', request()->only(['date','status'])) }}'"
+                            class="px-4 py-2 bg-primary-600 text-white rounded-lg text-xs font-semibold hover:bg-primary-700 transition">
+                            Export CSV
+                        </button>
+                        <button type="button" onclick="window.print()"
+                            class="px-4 py-2 bg-primary-100 text-primary-900 rounded-lg text-xs font-semibold hover:bg-primary-200 transition">
+                            Cetak / PDF
+                        </button>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="w-full overflow-hidden max-h-[170px]">
+                        <p class="text-xs uppercase tracking-[0.24em] text-primary-500 mb-1.5">Pendapatan</p>
+                        <div class="overflow-x-auto">
+                            <div class="min-w-[520px]">
+                                <canvas id="revenueChart" height="120" class="w-full max-w-[520px]"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full overflow-hidden max-h-[170px]">
+                        <p class="text-xs uppercase tracking-[0.24em] text-primary-500 mb-1.5">Order</p>
+                        <div class="overflow-x-auto">
+                            <div class="min-w-[520px]">
+                                <canvas id="orderChart" height="120" class="w-full max-w-[520px]"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white/80 rounded-xl p-5 shadow border border-primary-200/50 w-full">
+                <p class="text-sm font-medium text-primary-700 mb-4">Ringkasan Bulanan</p>
+                <div class="space-y-4 text-primary-700">
+                    <div class="bg-primary-50 rounded-2xl p-4">
+                        <p class="text-xs text-primary-500">Pendapatan Bulan {{ $stats['current_month_label'] }}</p>
+                        <p class="text-2xl font-bold text-primary-900">Rp {{ number_format($stats['monthly_revenue'], 0, ',', '.') }}</p>
+                        <p class="text-xs text-primary-500">Perbandingan dengan {{ $stats['previous_month_label'] }}: <span class="font-semibold {{ $stats['monthly_revenue_change'] >= 0 ? 'text-emerald-700' : 'text-red-700' }}">{{ $stats['monthly_revenue_change'] }}%</span></p>
+                    </div>
+                    <div class="bg-primary-50 rounded-2xl p-4">
+                        <p class="text-xs text-primary-500">Order Bulan {{ $stats['current_month_label'] }}</p>
+                        <p class="text-2xl font-bold text-primary-900">{{ $stats['monthly_orders'] }}</p>
+                        <p class="text-xs text-primary-500">Perbandingan: <span class="font-semibold {{ $stats['monthly_order_change'] >= 0 ? 'text-emerald-700' : 'text-red-700' }}">{{ $stats['monthly_order_change'] }}%</span></p>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Table -->
@@ -234,11 +357,113 @@
 </div>
 @endsection
 
+@push('styles')
+<style>
+@media print {
+    body { background: white !important; color: #111827 !important; }
+    nav, form, button, a, .no-print, .bg-primary-200, .bg-primary-100 { display: none !important; }
+    .bg-white\/80 { background: white !important; }
+    .shadow, .shadow-sm { box-shadow: none !important; }
+    * { color: #111827 !important; }
+}
+</style>
+@endpush
+
 @push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script>
 function toggleDetail(orderId) {
     const row = document.getElementById('detail-' + orderId);
     row.classList.toggle('hidden');
 }
+
+function renderHistoryCharts() {
+    const labels = @json($stats['trend_labels']);
+    const revenueData = @json($stats['trend_revenue']);
+    const orderData = @json($stats['trend_orders']);
+
+    const revenueCtx = document.getElementById('revenueChart');
+    const orderCtx = document.getElementById('orderChart');
+
+    if (revenueCtx) {
+        const revenueMax = Math.max(...revenueData, 0);
+        const revenueStep = revenueMax > 0 ? Math.ceil(revenueMax / 4 / 1000000) * 1000000 : 1000000;
+
+        new Chart(revenueCtx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Pendapatan',
+                    data: revenueData,
+                    borderColor: '#2563eb',
+                    backgroundColor: 'rgba(37, 99, 235, 0.18)',
+                    fill: true,
+                    tension: 0.35,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#1d4ed8',
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: { mode: 'index', intersect: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        suggestedMax: revenueMax + revenueStep,
+                        ticks: {
+                            stepSize: revenueStep,
+                            callback: value => 'Rp ' + value.toLocaleString('id-ID')
+                        }
+                    },
+                    x: { ticks: { color: '#374151' } }
+                }
+            }
+        });
+    }
+
+    if (orderCtx) {
+        const orderMax = Math.max(...orderData, 0);
+        const orderStep = orderMax > 0 ? Math.ceil(orderMax / 4) : 1;
+
+        new Chart(orderCtx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Jumlah Order',
+                    data: orderData,
+                    backgroundColor: 'rgba(16, 185, 129, 0.8)',
+                    borderRadius: 8,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: { mode: 'index', intersect: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        suggestedMax: orderMax + orderStep,
+                        ticks: {
+                            stepSize: orderStep,
+                            precision: 0
+                        }
+                    },
+                    x: { ticks: { color: '#374151' } }
+                }
+            }
+        });
+    }
+}
+
+window.addEventListener('load', renderHistoryCharts);
 </script>
 @endpush

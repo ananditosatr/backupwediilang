@@ -21,7 +21,7 @@ class PaymentController extends Controller
 
             $order = Order::findOrFail($validated['order_id']);
 
-            if ($order->status !== 'pending_payment') {
+            if (! in_array($order->status, ['pending_payment', 'pending_verification'])) {
                 return response()->json([
                     'success' => false,
                     'message' => 'Order tidak dalam status menunggu pembayaran.',
