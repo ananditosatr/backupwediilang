@@ -20,27 +20,17 @@
                     </div>
                 </div>
 
-                <div class="flex items-center space-x-4">
-                    <a href="{{ route('kasir.history') }}"
-                        class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-brand-primary hover:bg-brand-primary-dark text-brand-white rounded-lg text-sm font-medium transition">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
+                <div class="flex items-center space-x-3">
+                    <a href="{{ route('kasir.history') }}" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-2xl text-sm font-medium transition">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                         History
                     </a>
-                    <a href="{{ route('kasir.menu.index') }}"
-                        class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-brand-primary hover:bg-brand-primary-dark text-brand-white rounded-lg text-sm font-medium transition">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
-                        </svg>
+                    <a href="{{ route('kasir.menu.index') }}" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-2xl text-sm font-medium transition">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
                         Kelola Menu
                     </a>
-                    <a href="{{ route('customer.order') }}" target="_blank"
-                        class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-brand-soft hover:bg-[#F8B07A] text-[#3F2B25] rounded-lg text-sm font-medium transition">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                        </svg>
+                    <a href="{{ route('customer.order') }}" target="_blank" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-2xl text-sm font-medium transition">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
                         Preview Menu
                     </a>
                     <button type="button" onclick="toggleDarkMode()" class="p-2 text-brand-white/90 hover:bg-white/20 rounded-lg transition">
@@ -68,11 +58,10 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-
-        <!-- Stats Cards -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+            <main>
+                <!-- Stats Cards -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
             <div class="bg-brand-soft/30 rounded-3xl shadow-xl p-4 border border-brand-soft/40 backdrop-blur-sm">
                 <p class="text-xs font-medium text-[#7A462F]">Pending Review</p>
                 <h3 id="stat-pending" class="text-2xl font-bold text-[#A24423] mt-1">{{ $pendingReview->count() }}</h3>
@@ -172,6 +161,8 @@
                 <p class="text-center text-[#6B4F3F] py-8 text-sm">Tidak ada order yang perlu direview</p>
                 @endforelse
             </div>
+        </div>
+            </main>
         </div>
 
         <!-- Order Status Management -->

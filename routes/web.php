@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\QrisController;
 use App\Http\Controllers\KasirController;
 use App\Http\Controllers\MenuManagerController;
 use App\Http\Controllers\HistoryController;
@@ -17,6 +18,9 @@ Route::get('/menus/category', [CustomerController::class, 'getMenusByCategory'])
 Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
 Route::post('/orders/check-expired', [OrderController::class, 'checkExpired'])->name('orders.check-expired');
 Route::get('/orders/{orderNumber}', [OrderController::class, 'show'])->name('orders.show');
+
+// QRIS Routes (Public)
+Route::get('/qris/dynamic', [QrisController::class, 'png'])->name('qris.dynamic');
 
 // Payment Routes (Public)
 Route::post('/payments/upload', [PaymentController::class, 'upload'])->name('payments.upload');
@@ -58,6 +62,7 @@ Route::prefix('kasir')->group(function () {
 
         // History
         Route::get('/history', [HistoryController::class, 'index'])->name('kasir.history');
+        Route::get('/history/export', [HistoryController::class, 'export'])->name('kasir.history.export');
 
         // Category Management
         Route::get('/category/create', [MenuManagerController::class, 'createCategory'])->name('kasir.category.create');

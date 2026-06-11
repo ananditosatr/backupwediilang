@@ -682,6 +682,11 @@ namespace App\Models {
      * @property \Illuminate\Support\Carbon|null $created_at
      * @property string|null $notes
      * @property \Illuminate\Support\Carbon|null $payment_deadline
+     * @property string|null $delivery_time
+     * @property string|null $address
+     * @property string|null $district
+     * @property string|null $city
+     * @property mixed $order_method
      * @property mixed $payment_method
      * @property mixed $status
      * @property float $total_amount
@@ -699,6 +704,11 @@ namespace App\Models {
      * @method static \Illuminate\Database\Eloquent\Builder<Order>|Order whereTotalAmount($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Order>|Order whereStatus($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Order>|Order wherePaymentMethod($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Order>|Order whereOrderMethod($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Order>|Order whereCity($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Order>|Order whereDistrict($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Order>|Order whereAddress($value)
+     * @method static \Illuminate\Database\Eloquent\Builder<Order>|Order whereDeliveryTime($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Order>|Order wherePaymentDeadline($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Order>|Order whereNotes($value)
      * @method static \Illuminate\Database\Eloquent\Builder<Order>|Order whereCreatedAt($value)
