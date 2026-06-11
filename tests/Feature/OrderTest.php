@@ -70,6 +70,57 @@ class OrderTest extends TestCase
         ]);
     }
 
+    public function test_customer_can_create_delivery_order(): void
+    {
+        $menu = $this->createMenu();
+
+        $response = $this->postJson('/orders', [
+            'customer_name' => 'Budi',
+            'no_whatsapp'   => '08123456789',
+            'payment_method'=> 'qris',
+            'order_method'  => 'delivery',
+            'city'          => 'Sidoarjo',
+            'district'      => 'Taman',
+            'address'       => 'Jl. Contoh No. 1',
+            'delivery_time' => 'Jam 08.00 WIB',
+            'proof_image'   => $this->dummyProof(),
+            'items'         => [['menu_id' => $menu->id, 'quantity' => 20]],
+        ]);
+
+        $response->assertStatus(200)
+                 ->assertJson(['success' => true]);
+
+        $this->assertDatabaseHas('orders', [
+            'customer_name' => 'Budi',
+            'order_method'  => 'delivery',
+            'city'          => 'Sidoarjo',
+            'district'      => 'Taman',
+            'address'       => 'Jl. Contoh No. 1',
+            'delivery_time' => 'Jam 08.00 WIB',
+        ]);
+    }
+
+    public function test_customer_cannot_create_delivery_order_below_minimum_amount(): void
+    {
+        $menu = $this->createMenu();
+
+        $response = $this->postJson('/orders', [
+            'customer_name' => 'Budi',
+            'no_whatsapp'   => '08123456789',
+            'payment_method'=> 'qris',
+            'order_method'  => 'delivery',
+            'city'          => 'Sidoarjo',
+            'district'      => 'Taman',
+            'address'       => 'Jl. Contoh No. 1',
+            'delivery_time' => 'Jam 08.00 WIB',
+            'proof_image'   => $this->dummyProof(),
+            'items'         => [['menu_id' => $menu->id, 'quantity' => 1]],
+        ]);
+
+        $response->assertStatus(422)
+                 ->assertJsonValidationErrors(['order_method']);
+    }
+
     public function test_order_requires_proof_for_qris(): void
     {
         $menu = $this->createMenu();
