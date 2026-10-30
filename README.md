@@ -49,7 +49,13 @@ Aplikasi point of sale berbasis web untuk pemesanan pelanggan dan operasional ka
 
 ## Konfigurasi
 
-Salin `.env.example` sebagai dasar konfigurasi lokal. Jangan commit `.env`, application key, kredensial, database lokal, atau bukti pembayaran. Jika application key pernah dipakai dari salinan lama `.env`, ganti key pada setiap environment yang menggunakannya.
+Salin `.env.example` sebagai dasar konfigurasi lokal. Jangan commit `.env`, application key, kredensial, database lokal, atau bukti pembayaran. Jika application key lama pernah dipakai, buat key baru pada setiap environment yang menggunakannya:
+
+```bash
+php artisan key:generate --force
+```
+
+Mengganti key dapat mengeluarkan sesi lama dan membuat data yang dienkripsi dengan key sebelumnya tidak dapat dibaca.
 
 ## Catatan pengembangan
 
