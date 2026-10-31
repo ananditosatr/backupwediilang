@@ -124,9 +124,9 @@ Invoice {{ $order->order_number }} - Rumah Cake Suprezz
                 @if(($documentType ?? 'invoice') === 'surat_jalan')
                 <div>
                     <p class="text-xs text-primary-700">Kurir</p>
-                    <p class="font-semibold text-primary-900">{{ config('kasir.courier_name', 'Satria') }}</p>
+                    <p class="font-semibold text-primary-900">{{ config('kasir.courier_name') }}</p>
                     <p class="text-xs text-primary-700">Telepon Kurir</p>
-                    <p class="font-semibold text-primary-900">{{ config('kasir.courier_phone', '08784493357') }}</p>
+                    <p class="font-semibold text-primary-900">{{ config('kasir.courier_phone') }}</p>
                 </div>
                 @endif
                 @if($order->notes)
