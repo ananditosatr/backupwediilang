@@ -1,5 +1,8 @@
 <?php
 
+
+
+
 return [
     /*
     |--------------------------------------------------------------------------
@@ -12,7 +15,13 @@ return [
     |
     */
 
-    'courier_name'        => env('KASIR_COURIER_NAME', 'Satria'),
-    'courier_phone'       => env('KASIR_COURIER_PHONE', '08784493357'),
+
+
+
+    'courier_name'        => env('KASIR_COURIER_NAME'),
+    'courier_phone'       => env('KASIR_COURIER_PHONE'),
     'min_delivery_items'  => env('KASIR_MIN_DELIVERY_ITEMS', 20),
 ];
+
+
+
