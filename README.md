@@ -55,7 +55,7 @@ Pembayaran tunai melalui aksi dashboard saat ini dinonaktifkan di controller, se
 
    Skrip tersebut memasang dependency, menyiapkan `.env`, membuat application key, menjalankan migrasi, memasang dependency frontend, dan membangun aset.
 
-3. Isi konfigurasi lokal di `.env` bila diperlukan. Jika nomor kontak kurir digunakan, atur `KASIR_COURIER_PHONE` hanya di `.env` pada environment terkait.
+3. Isi konfigurasi lokal di `.env` bila diperlukan. Jika nama atau nomor kontak kurir digunakan, atur `KASIR_COURIER_NAME` dan `KASIR_COURIER_PHONE` hanya di `.env` pada environment terkait.
 4. Jalankan server pengembangan:
 
    ```bash
