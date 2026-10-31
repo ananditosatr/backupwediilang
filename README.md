@@ -1,16 +1,31 @@
 # POS Rumah Cake Suprezz
 
-Aplikasi point of sale berbasis web untuk pemesanan pelanggan dan operasional kasir Rumah Cake Suprezz.
+Proyek tugas akhir S1 Sistem Informasi, Telkom University Surabaya.
+
+**Judul skripsi:** “Pembangunan Aplikasi Point of Sale Berbasis Website Menggunakan Personal Extreme Programming (Studi Kasus: PT Rumah Cake Suprezz)”
+
+- **Demo:** https://rumahcakesuprezz.site
+- **Repository:** https://github.com/ananditosatr/pos-rumah-cake-suprezz
+
+## Tampilan
+
+Tambahkan tangkapan layar aplikasi yang diambil dari versi yang berjalan. Gambar belum disertakan.
+
+![Katalog menu — tambahkan screenshot ke docs/katalog.png](docs/katalog.png)
+
+![Dashboard kasir — tambahkan screenshot ke docs/kasir.png](docs/kasir.png)
+
+![Invoice — tambahkan screenshot ke docs/invoice.png](docs/invoice.png)
 
 ## Fitur
 
-- Pelanggan dapat melihat katalog, memilih kategori menu, dan membuat pesanan.
-- Pelanggan dapat melihat status pesanan dan mengunggah bukti pembayaran.
-- Kasir dapat memeriksa bukti pembayaran, menyetujui atau menolak pesanan, dan memperbarui status pesanan.
+- Pelanggan dapat melihat katalog dan kategori menu, membuat pesanan, serta melacak status pesanan.
+- Pembayaran QRIS atau transfer bank mendukung unggah bukti pembayaran.
+- Kasir dapat memeriksa dan memverifikasi pembayaran.
 - Kasir dapat mengelola menu dan kategori, membuat pesanan walk-in, serta membuka invoice, delivery note, dan struk.
-- Riwayat pesanan tersedia pada dashboard kasir.
+- Dashboard kasir menyediakan riwayat pesanan.
 
-> Pembayaran tunai melalui aksi dashboard saat ini dinonaktifkan di aplikasi.
+Pembayaran tunai melalui aksi dashboard saat ini dinonaktifkan di controller, sehingga tidak dicantumkan sebagai fitur aktif.
 
 ## Teknologi
 
@@ -19,7 +34,9 @@ Aplikasi point of sale berbasis web untuk pemesanan pelanggan dan operasional ka
 - Blade
 - Tailwind CSS 4
 - Vite 7
-- SQLite untuk konfigurasi pengembangan lokal
+- Database pada template konfigurasi lokal: SQLite (`.env.example`). Database yang benar-benar digunakan secara lokal: [PERLU KONFIRMASI].
+- Database produksi/hosting: [PERLU KONFIRMASI].
+- Perangkat pengembangan: XAMPP dan Visual Studio Code
 
 ## Persyaratan
 
@@ -38,25 +55,23 @@ Aplikasi point of sale berbasis web untuk pemesanan pelanggan dan operasional ka
 
    Skrip tersebut memasang dependency, menyiapkan `.env`, membuat application key, menjalankan migrasi, memasang dependency frontend, dan membangun aset.
 
-3. Isi nilai `WHATSAPP_NUMBER` dan konfigurasi lokal lain di `.env` bila diperlukan.
+3. Isi konfigurasi lokal di `.env` bila diperlukan. Jika nomor kontak kurir digunakan, atur `KASIR_COURIER_PHONE` hanya di `.env` pada environment terkait.
 4. Jalankan server pengembangan:
 
    ```bash
    composer dev
    ```
 
-> Kredensial demo tidak disertakan. Jangan gunakan kredensial produksi dalam pengujian atau lingkungan publik.
+Jangan gunakan kredensial produksi dalam pengujian atau lingkungan publik. Jangan commit `.env`, application key, kredensial, database lokal, atau bukti pembayaran.
 
-## Konfigurasi
+## Saran About repository
 
-Salin `.env.example` sebagai dasar konfigurasi lokal. Jangan commit `.env`, application key, kredensial, database lokal, atau bukti pembayaran. Jika application key lama pernah dipakai, buat key baru pada setiap environment yang menggunakannya:
+Aplikasi POS berbasis Laravel untuk pemesanan pelanggan dan operasional kasir, dibuat sebagai proyek tugas akhir Sistem Informasi.
 
-```bash
-php artisan key:generate --force
-```
+## Saran topics
 
-Mengganti key dapat mengeluarkan sesi lama dan membuat data yang dienkripsi dengan key sebelumnya tidak dapat dibaca.
+`laravel`, `php`, `point-of-sale`, `tailwindcss`, `blade`
 
-## Catatan pengembangan
+## Catatan keamanan
 
-README ini menjelaskan implementasi yang ada saat ini; fitur pembayaran dan metode transaksi dapat berubah mengikuti konfigurasi aplikasi.
+Sebuah `APP_KEY` pernah ter-commit di riwayat repository. Riwayat branch telah dibersihkan, tetapi rotasi key pada server perlu dilakukan secara terpisah jika key tersebut pernah digunakan di produksi. Mengganti key dapat mengakhiri sesi aktif dan membuat data yang dienkripsi menggunakan key lama tidak dapat dibaca.
