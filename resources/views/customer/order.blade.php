@@ -266,7 +266,7 @@
             </label>
             <input type="tel" id="customer-wa" required
                 class="w-full px-4 py-3 border border-[#C9AC9A] rounded-lg text-sm bg-[#F4E3D9] text-[#2C1A11] focus:ring-2 focus:ring-[#D9703E] focus:border-transparent"
-                placeholder="Contoh: 08123456789">
+                placeholder="Masukkan nomor WhatsApp Anda">
         </div>
         <div class="mb-5">
             <label class="block text-sm font-medium text-[#2C1A11] mb-1.5">
@@ -274,7 +274,7 @@
             </label>
             <textarea id="order-notes" rows="2"
                 class="w-full px-4 py-3 border border-[#C9AC9A] rounded-lg text-sm bg-[#F4E3D9] text-[#2C1A11] focus:ring-2 focus:ring-[#D9703E] focus:border-transparent"
-                placeholder="Contoh: tidak pakai pedas..."></textarea>
+                placeholder="Masukkan nomor WhatsApp Anda"></textarea>
         </div>
 
         <div class="sticky bottom-0 left-0 right-0 bg-gradient-to-t from-[#F4E3D9] to-transparent pt-2 pb-2">
